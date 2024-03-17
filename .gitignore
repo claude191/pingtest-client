@@ -1,4 +1,7 @@
-logs/*.log
+
+.*
+
+bin/config.sh
 logs/*.csv
 locks/*.lock
-.*
+
