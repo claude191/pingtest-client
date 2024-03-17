@@ -2,6 +2,7 @@
 .*
 
 bin/config.sh
+logs/*.log
 logs/*.csv
 locks/*.lock
 
