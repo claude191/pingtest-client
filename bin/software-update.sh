@@ -11,7 +11,7 @@ function mainline()
     cd $BASEDIR
 
     git pull
-    m4 -P --define=SITE=$SITE crontab.m4 # | crontab
+    m4 -P --define=SITE=$SITE crontab.m4 | crontab
 }
 
 mainline

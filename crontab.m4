@@ -1,8 +1,15 @@
 # m h  dom mon dow   command
+m4_changequote(`[', `]')m4_dnl
+m4_changecom()m4_dnl
+# crontab for site SITE
 
 # Run regular tests
-* *          * * * bin/ping-test.sh
-0 8,12,16,20 * * * bin/ookla-test.sh
+* * * * * bin/ping-test.sh
+m4_ifelse(
+    SITE, 32karalta,  [0 8,12,16,20 * * * bin/ookla-test.sh],
+    SITE, 31bay,      [0 8,12,16,20 * * * bin/ookla-test.sh],
+    [0 8,12,16,20 * * * bin/ookla-test.sh]
+)m4_dnl
 
 # Cleanup logs and CSVs after a period
 0 0          * * * find logs -name "*.log" -mtime +30 -delete
