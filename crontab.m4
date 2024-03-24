@@ -7,7 +7,7 @@ m4_define(COMMAND, [(date; bin/$1.sh) >>logs/$1.log 2>&1])
 [SITE]=SITE
 
 # Run regular tests
-* * * * * COMMAND(bin/ping-test.sh)
+* * * * * COMMAND(ping-test)
 m4_ifelse(
     SITE, 32karalta,  [0 8,12,16,20 * * * COMMAND(ookla-test)],
     SITE, 31bay,      [0 8,12,16,20 * * * COMMAND(ookla-test)],
