@@ -11,7 +11,7 @@ function mainline()
 
     (
         flock -w30 99 || exit 1
-        run-test >> $BASEDIR/logs/ookla-test.$DATE.log 2>&1
+        run-test >> $BASEDIR/logs/ookla-test.$DATE.log
     ) 99>$BASEDIR/locks/ookla-test.lock
 }
 
