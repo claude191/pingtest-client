@@ -1,9 +1,7 @@
 m4_changequote(`[', `]')m4_dnl
 m4_changecom()m4_dnl
-m4_define(COMMAND, [(date; bin/$1.sh) >>logs/$1.log 2>&1])
-
+m4_define(COMMAND, [(date; bin/$1.sh) >>logs/$1.log 2>&1])m4_dnl
 # m h  dom mon dow   command
-# crontab for site SITE
 [SITE]=SITE
 
 # Run regular tests
@@ -14,8 +12,8 @@ m4_ifelse(
     [0 8,12,16,20 * * * COMMAND(ookla-test)]
 )
 
-# Cleanup logs and CSVs after a period
-0 0          * * * COMMAND(cleanup)
+# Regular cleanup 
+0 * * * * COMMAND(cleanup)
 
 # Regularly summary & upload
 */15 * * * * COMMAND(summarise); COMMAND(upload)
@@ -24,5 +22,5 @@ m4_ifelse(
 59 * * * * COMMAND(software-update)
 
 # Locally execute a central admin script
-14-59/15 * * * * COMMAND(central-admin)
+*/15 * * * * COMMAND(central-admin)
 
