@@ -1,0 +1,23 @@
+
+
+# m h  dom mon dow   command
+# crontab for site 32karalta
+SITE=32karalta
+
+# Run regular tests
+* * * * * (echo `date` - 'bin/ping-test.sh'; bin/ping-test.sh) >>logs/crontab.log 2>&1
+0 8,12,16,20 * * * (echo `date` - 'bin/ookla-test.sh'; bin/ookla-test.sh) >>logs/crontab.log 2>&1
+
+# Cleanup logs and CSVs after a period
+0 0          * * * (echo `date` - 'find logs -name "*.log" -mtime +30 -delete'; find logs -name "*.log" -mtime +30 -delete) >>logs/crontab.log 2>&1
+0 0          * * * (echo `date` - 'find logs -name "*.csv" -mtime +183 -delete'; find logs -name "*.csv" -mtime +183 -delete) >>logs/crontab.log 2>&1
+
+# Regularly summary & upload
+*/15 * * * * (echo `date` - 'bin/summarise.sh; bin/upload.sh'; bin/summarise.sh; bin/upload.sh) >>logs/crontab.log 2>&1
+
+# Update the scripts from the central setup
+0 * * * * (echo `date` - 'bin/software-update.sh'; bin/software-update.sh) >>logs/crontab.log 2>&1
+
+# Locally execute a central admin script
+14-59/15 * * * * (echo `date` - 'bin/central-admin.sh'; bin/central-admin.sh) >>logs/crontab.log 2>&1
+

@@ -1,14 +1,13 @@
 #!/bin/bash
 
 set -e
-
 SELF=$(readlink -f $0)
 SELFDIR=$(dirname $SELF)
 . $SELFDIR/config.sh
 
 function mainline()
 {
-    /usr/sbin/traceroute -n 8.8.8.8 > $BASEDIR/logs/first-first-hop.log
+    /usr/sbin/traceroute -n 8.8.8.8 > $BASEDIR/logs/find-first-hop.log
     find-first-hop < $BASEDIR/logs/find-first-hop.log
 }
 

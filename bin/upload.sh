@@ -13,5 +13,5 @@ cd $BASEDIR/logs
 tar cz --mode=640 $(find -mmin -360 \( -name "*.log" -o -name "*.csv" \) | sort ) > $TEMPFILE
 
 # Upload the package
-curl -X POST -F "output=@$TEMPFILE" $URLBASE/upload.php
+curl -X POST -F "output=@$TEMPFILE" $BASEURL/upload.php
 
