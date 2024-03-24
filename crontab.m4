@@ -27,5 +27,5 @@ m4_ifelse(
 )
 
 # Regular cleanup 
-0 * * * * COMMAND(cleanup)
+0 0 * * * COMMAND(cleanup)
 
