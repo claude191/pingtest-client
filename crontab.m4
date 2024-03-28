@@ -9,8 +9,7 @@ m4_define(COMMAND, [(date; bin/$1.sh) >>logs/$1.log 2>&1])m4_dnl
 
 # Regular speed tests
 m4_ifelse(
-    SITE, 32karalta,  [0 8,12,16,20 * * * COMMAND(ookla-test)],
-    SITE, 31bay,      [0 8,12,16,20 * * * COMMAND(ookla-test)],
+    SITE, example-override,      [0 * * * * COMMAND(ookla-test)],
     [0 8,12,16,20 * * * COMMAND(ookla-test)]
 )
 
@@ -22,7 +21,7 @@ m4_ifelse(
 
 # Locally execute a central admin script
 m4_ifelse(
-    SITE, 31bay, [* * * * * COMMAND(central-admin)],
+    SITE, example-override,  [* * * * * COMMAND(central-admin)],
     [*/15 * * * * COMMAND(central-admin)]
 )
 
