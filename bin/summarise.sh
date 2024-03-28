@@ -1,9 +1,5 @@
 #!/bin/bash
-
-set -e
-SELF=$(readlink -f $0)
-SELFDIR=$(dirname $SELF)
-. $SELFDIR/config.sh
+source $(dirname $(readlink -f $0))/configure
 
 $BASEDIR/bin/summarise-ping.sh
 $BASEDIR/bin/summarise-ookla.sh
