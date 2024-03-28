@@ -1,6 +1,6 @@
 m4_changequote(`[', `]')m4_dnl
 m4_changecom()m4_dnl
-m4_define(COMMAND, [(date; bin/$1.sh) >>logs/$1.log 2>&1])m4_dnl
+m4_define(COMMAND, [(date; bin/$1) >>logs/$1.log 2>&1])m4_dnl
 # m h  dom mon dow   command
 
 # Regular ping tests
