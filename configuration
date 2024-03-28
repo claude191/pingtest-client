@@ -1,0 +1,25 @@
+
+# Where things live locally and remotely
+BASEDIR=$HOME
+BASEURL="https://pingtest.falam.net/$SITENAME"
+
+# Ping targets: PING_<dayType>_<hourType> (EVEN or ODD)
+PING_EVEN_EVEN=8.8.8.8      # Google
+PING_EVEN_ODD=8.8.4.4       # Google
+PING_ODD_EVEN=1.1.1.1       # Cloudflare
+PING_ODD_ODD=1.0.0.1        # Cloudflare
+    
+# Extra tests if ping-loss reaches this percentage
+PING_TRACEROUTE_THRESHOLD=10
+PING_OOKLA_THRESHOLD=10
+
+# Overrides for some sites
+case $SITENAME in
+    32karalta)
+        PING_EVEN_EVEN=119.40.106.35
+        PING_EVEN_ODD=119.40.106.36
+        PING_TRACEROUTE_THRESHOLD=4
+        PING_OOKLA_THRESHOLD=4
+        ;;
+esac
+

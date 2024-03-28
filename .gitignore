@@ -1,6 +1,8 @@
 
 .*
 
+sitename
+
 logs/*.log
 logs/*.csv
 locks/*.lock

@@ -1,0 +1,26 @@
+# Stop all scripts on error
+set -e
+
+# Location of the script & installation
+SELF=$(readlink -f $0)
+SELFDIR=$(dirname $SELF)
+BASEDIR=$(dirname $SELFDIR)
+
+# Load the sitename and configuration
+source $BASEDIR/sitename
+source $BASEDIR/configuration
+
+if [ "$SITENAME" = "" ]; then
+    echo "$0: sitename is not configured" >&2
+    exit 1
+fi
+
+# Location of the server
+BASEURL="https://pingtest.falam.net/$SITENAME"
+
+# Set ping target using even/odd day-of-month and hour-of-day
+eval $(date "+HOUR=%_H DAY=%_d" | sed 's/= /=/g')
+if [[ $(( DAY % 2 ))  == 0 ]]; then DAY="EVEN";  else DAY="ODD";  fi
+if [[ $(( HOUR % 2 )) == 0 ]]; then HOUR="EVEN"; else HOUR="ODD"; fi
+eval PING_TARGET='$'PING_${DAY}_${HOUR}
+
